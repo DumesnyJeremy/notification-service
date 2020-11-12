@@ -4,7 +4,7 @@ import (
 	"net/smtp"
 	"strconv"
 
-	"ssl-ar/notification-service"
+	"github.com/DumesnyJeremy/notification-service"
 )
 
 type Mail struct {

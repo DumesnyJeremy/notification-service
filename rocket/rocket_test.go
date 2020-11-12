@@ -5,7 +5,7 @@ import (
 	"github.com/titandc/gorocket/rest"
 	"testing"
 
-	notification_service "ssl-ar/notification-service"
+	"github.com/DumesnyJeremy/notification-service"
 )
 
 type Client struct{}
