@@ -1,0 +1,47 @@
+package rocket
+
+import (
+	"github.com/titandc/gorocket/api"
+	"github.com/titandc/gorocket/rest"
+	"testing"
+
+	notification_service "ssl-ar/notification-service"
+)
+
+type Client struct{}
+
+func (m *Client) Send(channel *api.Channel, msg string) (*rest.PostMessageReturn, error) {
+	// Change the return to check how react Rocket implementation.
+	return &rest.PostMessageReturn{}, nil
+}
+
+func (m *Client) GetMessages(channel *api.Channel, page *rest.Page) ([]api.Message, error) {
+	// Change the return to check how react Rocket implementation.
+	return []api.Message{}, nil
+}
+
+func TestClient(t *testing.T) {
+	mockedClientObj := new(Client)
+	infoRocket := fillRocketStruct(mockedClientObj)
+	if _, err := infoRocket.SendMessage("Hello word", "@example"); err != nil {
+		t.Error("Error: ", err)
+	}
+}
+
+func fillRocketStruct(mockedClientObj *Client) Rocket {
+	return Rocket{
+		Config: notification_service.NotifierConfig{
+			Name: "rocket-example",
+			Type: "rocket",
+			Source: notification_service.InfoConfSource{
+				From: "example@gmail.com",
+				Pwd:  "secret_pwd",
+			},
+			Host:  "rocket.example.io",
+			Port:  443,
+			Tls:   true,
+			Debug: false,
+		},
+		Client: mockedClientObj,
+	}
+}
