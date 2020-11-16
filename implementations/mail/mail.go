@@ -4,15 +4,15 @@ import (
 	"net/smtp"
 	"strconv"
 
-	"github.com/DumesnyJeremy/notification-service"
+	"github.com/DumesnyJeremy/notification-service/implementations"
 )
 
 type Mail struct {
-	Config notification_service.NotifierConfig
+	Config implementations.NotifierConfig
 }
 
 // Receives the config extract from the configuration file and add the sender mail and password.
-func InitNotifier(config notification_service.NotifierConfig) (notification_service.Notifier, error) {
+func InitNotifier(config implementations.NotifierConfig) (implementations.Notifier, error) {
 	Notifier, err := initMail(config)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func InitNotifier(config notification_service.NotifierConfig) (notification_serv
 	return Notifier, nil
 }
 
-func initMail(notifierConfig notification_service.NotifierConfig) (*Mail, error) {
+func initMail(notifierConfig implementations.NotifierConfig) (*Mail, error) {
 	return &Mail{
 		Config: notifierConfig,
 	}, nil

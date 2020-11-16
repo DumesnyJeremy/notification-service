@@ -5,7 +5,7 @@ import (
 	"github.com/titandc/gorocket/rest"
 	"strconv"
 
-	"github.com/DumesnyJeremy/notification-service"
+	"github.com/DumesnyJeremy/notification-service/implementations"
 )
 
 type RocketClient interface {
@@ -14,13 +14,13 @@ type RocketClient interface {
 }
 
 type Rocket struct {
-	Config notification_service.NotifierConfig
+	Config implementations.NotifierConfig
 	Client RocketClient
 }
 
 // Receives the config extract from the configuration file, create the rest.NewClient and login a user
 // with the Email and the Password and return a Notifier object fill in initRocket.
-func InitNotifier(config notification_service.NotifierConfig) (notification_service.Notifier, error) {
+func InitNotifier(config implementations.NotifierConfig) (implementations.Notifier, error) {
 	Notifier, err := initRocket(config)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func InitNotifier(config notification_service.NotifierConfig) (notification_serv
 	return Notifier, nil
 }
 
-func initRocket(notifierConfig notification_service.NotifierConfig) (*Rocket, error) {
+func initRocket(notifierConfig implementations.NotifierConfig) (*Rocket, error) {
 	Client, err := initClient(notifierConfig)
 	if err != nil {
 		return nil, err
@@ -39,7 +39,7 @@ func initRocket(notifierConfig notification_service.NotifierConfig) (*Rocket, er
 	}, nil
 }
 
-func initClient(config notification_service.NotifierConfig) (*rest.Client, error) {
+func initClient(config implementations.NotifierConfig) (*rest.Client, error) {
 	client := rest.NewClient(config.Host, strconv.Itoa(config.Port), config.Tls, config.Debug)
 	if err := client.Login(api.UserCredentials{Email: config.Source.From, Password: config.Source.Pwd}); err != nil {
 		return nil, err

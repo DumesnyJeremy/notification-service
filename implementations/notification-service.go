@@ -1,4 +1,4 @@
-package notification_service
+package implementations
 
 const NotifierTypeMail = "mail"
 const NotifierTypeRocket = "rocket"
@@ -22,4 +22,3 @@ type InfoConfSource struct {
 	From string `mapstructure:"from"`
 	Pwd  string `mapstructure:"pwd"`
 }
-

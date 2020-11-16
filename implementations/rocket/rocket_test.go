@@ -5,7 +5,7 @@ import (
 	"github.com/titandc/gorocket/rest"
 	"testing"
 
-	"github.com/DumesnyJeremy/notification-service"
+	"github.com/DumesnyJeremy/notification-service/implementations"
 )
 
 type Client struct{}
@@ -30,10 +30,10 @@ func TestClient(t *testing.T) {
 
 func fillRocketStruct(mockedClientObj *Client) Rocket {
 	return Rocket{
-		Config: notification_service.NotifierConfig{
+		Config: implementations.NotifierConfig{
 			Name: "rocket-example",
 			Type: "rocket",
-			Source: notification_service.InfoConfSource{
+			Source: implementations.InfoConfSource{
 				From: "example@gmail.com",
 				Pwd:  "secret_pwd",
 			},
