@@ -1,4 +1,4 @@
-#notification-service
+# notification-service
 
 A library providing the ability to send messages.
 
