@@ -7,7 +7,7 @@ You can easily implement another notifier type, you just have to respect the int
 
 ### Usage
 
-#### Straightforward usage example
+#### Straightforward usage
 
 Create an SMTP notifier
 
@@ -21,10 +21,9 @@ notifier, _ := mail.InitNotifier(notification_service.NotifierConfig{
 		Tls:    true,
 		Debug:  false,
 	})
-	_, _ = notifier.SendMessage("Test message.", "example@gmail.com")
 ```
 
-Crete a rocket chat notifier
+Create a rocket chat notifier
 
 ```go
 notifier, _ := rocket.InitNotifier(notification_service.NotifierConfig{
@@ -36,11 +35,23 @@ notifier, _ := rocket.InitNotifier(notification_service.NotifierConfig{
 		Tls:    true,
 		Debug:  false,
 	})
-	_, _ = notifier.SendMessage("Test message.", "@example")
+```
+
+Use the notifier to send email/rocket messages
+
+```go
+// Send an email using smtp notifier
+_ = notifier.SendMessage("Test message.", "example@gmail.com")
+
+// Send a rocket msg to a user
+_ = notifier.SendMessage("Test message.", "@user")
+
+// Send a rocket msg to a channel
+_ = notifier.SendMessage("Test message.", "#channel")
 ```
 
 
-#### With Configuration file
+#### Using a configuration file
 
 If you want to create a configuration file, you can use [Viper](https://github.com/spf13/viper#putting-values-into-viper) to read,
 and fill this structure by Unmarshalling the config file. The `mapstructure` will read all configuration file type.
