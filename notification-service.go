@@ -1,4 +1,4 @@
-package implementations
+package notification_service
 
 const NotifierTypeMail = "mail"
 const NotifierTypeRocket = "rocket"
