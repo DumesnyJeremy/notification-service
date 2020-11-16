@@ -13,28 +13,28 @@ Create an SMTP notifier
 
 ```go
 notifier, _ := mail.InitNotifier(notification_service.NotifierConfig{
-		Name:   "mail-example",
-		Type:   "mail",
-		Source: notification_service.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
-		Host:   "smtp.gmail.com",
-		Port:   587,
-		Tls:    true,
-		Debug:  false,
-	})
+	Name:   "mail-example",
+	Type:   "mail",
+	Source: notification_service.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
+	Host:   "smtp.gmail.com",
+	Port:   587,
+	Tls:    true,
+	Debug:  false,
+})
 ```
 
 Create a rocket chat notifier
 
 ```go
 notifier, _ := rocket.InitNotifier(notification_service.NotifierConfig{
-		Name:   "rocket-example",
-		Type:   "rocket",
-		Source: notification_service.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
-		Host:   "rocket.example.io",
-		Port:   443,
-		Tls:    true,
-		Debug:  false,
-	})
+	Name:   "rocket-example",
+	Type:   "rocket",
+	Source: notification_service.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
+	Host:   "rocket.example.io",
+	Port:   443,
+	Tls:    true,
+	Debug:  false,
+})
 ```
 
 Use the notifier to send email/rocket messages
