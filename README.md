@@ -50,20 +50,6 @@ _ = notifier.SendMessage("Test message.", "@user")
 _ = notifier.SendMessage("Test message.", "#channel")
 ```
 
-Fill the structure using [Viper](https://github.com/spf13/viper#putting-values-into-viper)
-
-```go
-func ParseConfig(configFilePath string) (*Config, error) {
-	var configArray Config
-	viper.SetConfigName("config")
-	viper.SetConfigType(json)
-	viper.AddConfigPath("path/to/config/file")
-	_ = viper.ReadInConfig()
-	_ = viper.Unmarshal(&configArray)
-	return &configInfo, nil
-}
-```
-
 #### Using a configuration file
 
 If you want to create a configuration file, you can use [Viper](https://github.com/spf13/viper#putting-values-into-viper) to read,
@@ -104,4 +90,18 @@ Here is a JSON configuration file example
       "debug": false
     }
   ]
+```
+
+Fill the structure using [Viper](https://github.com/spf13/viper#putting-values-into-viper)
+
+```go
+func ParseConfig(configFilePath string) (*Config, error) {
+	var configArray Config
+	viper.SetConfigName("config")
+	viper.SetConfigType(json)
+	viper.AddConfigPath("path/to/config/file")
+	_ = viper.ReadInConfig()
+	_ = viper.Unmarshal(&configArray)
+	return &configInfo, nil
+}
 ```
