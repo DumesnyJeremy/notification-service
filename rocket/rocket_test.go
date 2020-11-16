@@ -33,7 +33,7 @@ func fillRocketStruct(mockedClientObj *Client) Rocket {
 		Config: notification_service.NotifierConfig{
 			Name: "rocket-example",
 			Type: "rocket",
-			Source: notification_service.InfoConfSource{
+			Source: notification_service.NotifierSourceConfig{
 				From: "example@gmail.com",
 				Pwd:  "secret_pwd",
 			},
