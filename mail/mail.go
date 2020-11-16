@@ -9,8 +9,6 @@ import (
 
 type Mail struct {
 	Config notification_service.NotifierConfig
-	from   string
-	pass   string
 }
 
 // Receives the config extract from the configuration file and add the sender mail and password.
@@ -23,12 +21,8 @@ func InitNotifier(config notification_service.NotifierConfig) (notification_serv
 }
 
 func initMail(notifierConfig notification_service.NotifierConfig) (*Mail, error) {
-	from := notifierConfig.Source.From
-	pass := notifierConfig.Source.Pwd
 	return &Mail{
 		Config: notifierConfig,
-		from:   from,
-		pass:   pass,
 	}, nil
 }
 
@@ -37,15 +31,15 @@ func initMail(notifierConfig notification_service.NotifierConfig) (*Mail, error)
 func (mail *Mail) SendMessage(msg string, dest string) (string, error) {
 	to := dest
 	subject := "Subject: " + msg + "\n\n"
-	message := "From: " + mail.from + "\n" +
+	message := "From: " + mail.Config.Source.From + "\n" +
 		"To: " + to + "\n" +
 		subject +
 		msg
 
 	port := mail.Config.Host + ":" + strconv.Itoa(mail.Config.Port)
 	err := smtp.SendMail(port,
-		smtp.PlainAuth("", mail.from, mail.pass, mail.Config.Host),
-		mail.from, []string{to}, []byte(message))
+		smtp.PlainAuth("", mail.Config.Source.From, mail.Config.Source.Pwd, mail.Config.Host),
+		mail.Config.Source.From, []string{to}, []byte(message))
 	if err != nil {
 		return "", err
 	}
