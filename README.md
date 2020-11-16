@@ -93,4 +93,16 @@ Here is a JSON configuration file example
   ]
 ```
 
-// TODO: add a piece of code that marshal config file using viper & init notifiers from config slice
+Fill the structure using [Viper](https://github.com/spf13/viper#putting-values-into-viper)
+
+```go
+func ParseConfig(configFilePath string) (*Config, error) {
+	var configArray Config
+	viper.SetConfigName("config")
+	viper.SetConfigType(json)
+	viper.AddConfigPath("path/to/config/file")
+	_ = viper.ReadInConfig()
+	_ = viper.Unmarshal(&configArray)
+	return &configInfo, nil
+}
+```
