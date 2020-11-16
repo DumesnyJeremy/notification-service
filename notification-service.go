@@ -9,16 +9,16 @@ type Notifier interface {
 }
 
 type NotifierConfig struct {
-	Name   string               `mapstructure:"name"`
-	Type   string               `mapstructure:"type"`
-	Source NotifierSourceConfig `mapstructure:"source"`
-	Host   string               `mapstructure:"host"`
-	Port   int                  `mapstructure:"port"`
-	Tls    bool                 `mapstructure:"tls"`
-	Debug  bool                 `mapstructure:"debug"`
+	Name   string         `mapstructure:"name"`
+	Type   string         `mapstructure:"type"`
+	Source InfoConfSource `mapstructure:"source"`
+	Host   string         `mapstructure:"host"`
+	Port   int            `mapstructure:"port"`
+	Tls    bool           `mapstructure:"tls"`
+	Debug  bool           `mapstructure:"debug"`
 }
 
-type NotifierSourceConfig struct {
+type InfoConfSource struct {
 	From string `mapstructure:"from"`
 	Pwd  string `mapstructure:"pwd"`
 }
