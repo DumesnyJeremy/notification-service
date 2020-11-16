@@ -44,37 +44,29 @@ type Config struct {
 ```
 
 #### Without configuration file
-You can directly init the 2 implementation, by filing the structure argument of the inits
 Mail example
 ```go
-notifier := mail.InitNotifier(notification_service.NotifierConfig{
-      "name": "gmail-example",
-      "type": "mail",
-      "source": {
-        "from": "example@gmail.com",
-        "pwd": "secret_pwd"
-      },
-      "host": "smtp.gmail.com",
-      "port": 587,
-      "tls": true,
-      "debug": false
-    }
-})
-notifier.SendMessage("Test message.", example@gmail.com)
+notifier, _ := mail.InitNotifier(implementations.NotifierConfig{
+		Name:   "mail-example",
+		Type:   "mail",
+		Source: implementations.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
+		Host:   "smtp.gmail.com",
+		Port:   587,
+		Tls:    true,
+		Debug:  false,
+	})
+	_, _ = notifier.SendMessage("Test message.", "example@gmail.com")
 ```
 Rocket example
 ```go
-notifier := rocket.InitNotifier(notification_service.NotifierConfig{
-      "name": "rocket-example",
-      "type": "rocket",
-      "source": {
-        "from": "example.example@gmail.com",
-        "pwd": "secret_pwd"
-      },
-      "host": "rocket.example.io",
-      "port": 443,
-      "tls": true,
-      "debug": false
-})
-notifier.SendMessage("Test message.", @example)
+notifier, _ := rocket.InitNotifier(implementations.NotifierConfig{
+		Name:   "rocket-example",
+		Type:   "rocket",
+		Source: implementations.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
+		Host:   "rocket.example.io",
+		Port:   443,
+		Tls:    true,
+		Debug:  false,
+	})
+	_, _ = notifier.SendMessage("Test message.", "@example")
 ```
