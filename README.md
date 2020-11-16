@@ -46,10 +46,10 @@ type Config struct {
 #### Without configuration file
 Mail example
 ```go
-notifier, _ := mail.InitNotifier(implementations.NotifierConfig{
+notifier, _ := mail.InitNotifier(notification_service.NotifierConfig{
 		Name:   "mail-example",
 		Type:   "mail",
-		Source: implementations.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
+		Source: notification_service.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
 		Host:   "smtp.gmail.com",
 		Port:   587,
 		Tls:    true,
@@ -59,10 +59,10 @@ notifier, _ := mail.InitNotifier(implementations.NotifierConfig{
 ```
 Rocket example
 ```go
-notifier, _ := rocket.InitNotifier(implementations.NotifierConfig{
+notifier, _ := rocket.InitNotifier(notification_service.NotifierConfig{
 		Name:   "rocket-example",
 		Type:   "rocket",
-		Source: implementations.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
+		Source: notification_service.InfoConfSource{From: "example@gmail.com", Pwd: "password"},
 		Host:   "rocket.example.io",
 		Port:   443,
 		Tls:    true,
